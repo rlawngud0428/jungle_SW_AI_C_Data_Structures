@@ -15,7 +15,7 @@ typedef struct _listnode{
 	int item;
 	struct _listnode *next;
 } ListNode;			// You should not change the definition of ListNode
-
+// 하나도 모르겠다 진짜 정말
 typedef struct _linkedlist{
 	int size;
 	ListNode *head;
@@ -39,6 +39,7 @@ int removeNode(LinkedList *ll, int index);
 int main()
 {
 	int c, i;
+	c = 1;
 	LinkedList ll;
 	LinkedList resultFrontList, resultBackList;
 
@@ -103,6 +104,24 @@ int main()
 void frontBackSplitLinkedList(LinkedList *ll, LinkedList *resultFrontList, LinkedList *resultBackList)
 {
 	/* add your code here */
+	removeAllItems(resultFrontList);
+	removeAllItems(resultBackList);
+
+	if (ll == NULL || ll->head == NULL || ll->size == 0)
+		return;
+
+	/* 앞쪽은 ceil(n/2): 홀수 길이면 앞 리스트가 한 칸 더 길게 */
+	int frontCount = (ll->size + 1) / 2;
+	ListNode *cur = ll->head;
+
+	for (int i = 0; i < frontCount; i++) {
+		insertNode(resultFrontList, resultFrontList->size, cur->item);
+		cur = cur->next;
+	}
+	while (cur != NULL) {
+		insertNode(resultBackList, resultBackList->size, cur->item);
+		cur = cur->next;
+	}
 }
 
 ///////////////////////////////////////////////////////////////////////////////////

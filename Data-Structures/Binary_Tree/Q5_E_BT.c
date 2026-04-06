@@ -8,6 +8,11 @@ Purpose: Implementing the required functions for Question 5 */
 
 #include <stdio.h>
 #include <stdlib.h>
+#define swap(x, y) do {        \
+    typeof(x) temp = (x);      \
+    (x) = (y);                 \
+    (y) = temp;                \
+} while (0)
 
 //////////////////////////////////////////////////////////////////////////////////
 
@@ -106,6 +111,12 @@ int main()
 void mirrorTree(BTNode *node)
 {
 	/* add your code here */
+    if (node == NULL) {
+        return;
+    }
+    mirrorTree(node->left);
+    mirrorTree(node->right);
+    swap(node->left, node->right);
 }
 
 //////////////////////////////////////////////////////////////////////////////////

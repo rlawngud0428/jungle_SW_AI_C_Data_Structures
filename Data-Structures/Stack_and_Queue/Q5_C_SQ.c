@@ -110,6 +110,26 @@ int main()
 void recursiveReverse(Queue *q)
 {
 /* add your code here */
+LinkedList *temp = malloc(sizeof(LinkedList));
+temp->head = NULL;
+temp->size = 0;
+
+int item;
+
+while (q->ll.size) {
+	item = dequeue(q);
+	insertNode(temp, 0, item);
+}
+
+ListNode *temp_node = malloc(sizeof(ListNode));
+temp_node = temp->head;
+while (temp_node != NULL) {
+	item = temp_node->item;
+	enqueue(q, item);
+	temp_node = temp_node->next;
+}
+free(temp);
+free(temp_node);
 }
 
 //////////////////////////////////////////////////////////////////

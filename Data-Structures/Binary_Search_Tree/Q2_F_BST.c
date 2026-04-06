@@ -91,6 +91,19 @@ int main()
 void inOrderTraversal(BSTNode *root)
 {
 	 /* add your code here */
+	Stack *s = malloc(sizeof(Stack));
+	s->top = NULL;
+	BSTNode *current = root;
+
+	while (current != NULL || !isEmpty(s)) {
+		while (current != NULL) {
+			push(s, current);
+			current = current->left;
+		}
+		current = pop(s);
+		printf("%d ", current->item);
+		current = current->right;
+	}
 }
 
 ///////////////////////////////////////////////////////////////////////////////

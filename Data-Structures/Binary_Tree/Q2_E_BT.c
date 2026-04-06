@@ -8,6 +8,7 @@ Purpose: Implementing the required functions for Question 2 */
 
 #include <stdio.h>
 #include <stdlib.h>
+#define MAX(a, b) ((a) > (b) ? (a) : (b))
 
 //////////////////////////////////////////////////////////////////////////////////
 typedef struct _btnode{
@@ -98,6 +99,14 @@ int maxHeight(BTNode *node)
 
 {
     /* add your code here */
+    if (node == NULL) {
+        return -1;
+    }
+    if (node->left == NULL && node->right == NULL) {
+        return 0;
+    }
+
+    return MAX(maxHeight(node->left), maxHeight(node->right)) + 1;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////

@@ -19,7 +19,7 @@ typedef struct _listnode{
 typedef struct _linkedlist{
 	int size;
 	ListNode *head;
-} LinkedList;			// You should not change the definition of LinkedList
+} LinkedList;		// You should not change the definition of LinkedList
 
 
 ///////////////////////// function prototypes ////////////////////////////////////
@@ -91,8 +91,27 @@ int main()
 int insertSortedLL(LinkedList *ll, int item)
 {
 	/* add your code here */
-}
+	if (ll->head == NULL) {
+		insertNode(ll, 0, item);
+	}
 
+	ListNode *cur;
+	cur = ll->head;
+	int idx = 0;
+	while (cur != NULL) {
+		idx++;
+		if (cur->item > item) {
+			insertNode(ll, idx, item);
+			break;
+		}
+		cur = cur->next;
+	}
+
+	if (cur == NULL) {
+		insertNode(ll, idx, item);
+	}
+
+}
 ///////////////////////////////////////////////////////////////////////////////////
 
 void printList(LinkedList *ll){
